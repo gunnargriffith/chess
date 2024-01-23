@@ -150,9 +150,70 @@ public class ChessPiece {
         } else if (type == PieceType.PAWN) {
 
         } else if (type == PieceType.QUEEN) {
+            int RowInt = 0;
+            int ColInt = 0;
+
+            for (int i=0; i < 8; i++) {
+                ChessPosition currentPostion=myPosition;
+                boolean collision=false;
+                boolean boundBool=true;
+
+                if (i == 0) {
+                    //up-left
+                    RowInt=1;
+                    ColInt=-1;
+                } else if (i == 1) {
+                    //up-right
+                    RowInt=1;
+                    ColInt=1;
+                } else if (i == 2) {
+                    //down-left
+                    RowInt=-1;
+                    ColInt=-1;
+                } else if(i ==3 ) {
+                    //down-right
+                    RowInt=-1;
+                    ColInt=1;
+                } else if (i == 4) {
+                    //left
+                    RowInt = 0;
+                    ColInt = -1;
+                } else if(i ==5){
+                    // Up
+                    RowInt = 1;
+                    ColInt = 0;
+                } else if(i == 6){
+                    //Right
+                    RowInt = 0;
+                    ColInt = 1;
+                } else{
+                    //Down
+                    RowInt = -1;
+                    ColInt = 0;
+                }
+
+                while (boundBool && !collision) {
+                    currentPostion=new ChessPosition(currentPostion.getRow() + RowInt, currentPostion.getColumn() + ColInt);
+                    boundBool=inBounds(currentPostion);
+                    if (!boundBool) {
+                        //don't add move
+                    } else if (board.getPiece(currentPostion) != null) {
+                        collision=true;
+                        ChessPiece hitPiece=board.getPiece(currentPostion);
+                        if (hitPiece.getPieceColor() != pieceColor) {
+                            ChessMove move = new ChessMove(myPosition, currentPostion, null);
+                            moveList.add(move);
+                        }
+                    } else {
+                        ChessMove move=new ChessMove(myPosition, currentPostion, null);
+                        moveList.add(move);
+                    }
+                }
+            }
+
 
         } else {
-            //all the contious pieces;
+            //Bishop and Rook
             int RowInt = 0;
             int ColInt = 0;
 
