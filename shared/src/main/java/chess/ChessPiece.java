@@ -148,7 +148,119 @@ public class ChessPiece {
             }
 
         } else if (type == PieceType.PAWN) {
+            if (pieceColor == ChessGame.TeamColor.WHITE){
+                if(myPosition.getRow() == 2){
+                    //First move
+                    ChessPosition oneMoveUp = new ChessPosition(3, myPosition.getColumn());
+                    ChessPosition twoMovesUp = new ChessPosition(4, myPosition.getColumn());
+                    if(board.getPiece(oneMoveUp) == null){
+                        ChessMove newMove = new ChessMove(myPosition, oneMoveUp, null);
+                        moveList.add(newMove);
+                        if(board.getPiece(twoMovesUp) == null){
+                            ChessMove newMove2 = new ChessMove(myPosition, twoMovesUp, null);
+                            moveList.add(newMove2);
+                        }
+                    }
+                    //Capture White 1
+                    ChessPosition capPosLeft = new ChessPosition(myPosition.getRow()+1, myPosition.getColumn() -1);
+                    ChessPosition capPosRight = new ChessPosition(myPosition.getRow()+1, myPosition.getColumn()+1 );
+                    if(board.getPiece(capPosLeft) != null) {
+                        if (board.getPiece(capPosLeft).getPieceColor() != pieceColor) {
+                            ChessMove newMove=new ChessMove(myPosition, capPosLeft, null);
+                            moveList.add(newMove);
+                        }
+                    }
+                    if(board.getPiece(capPosRight) != null) {
+                        if (board.getPiece(capPosRight).getPieceColor() != pieceColor) {
+                            ChessMove newMove=new ChessMove(myPosition, capPosRight, null);
+                            moveList.add(newMove);
+                        }
+                    }
+                } else if (myPosition.getRow() == 7) {
+                    ChessPosition oneMoveUp = new ChessPosition(myPosition.getRow()+1, myPosition.getColumn());
+                    if(board.getPiece(oneMoveUp) == null){
+                        PieceType promoPiece;
+                        for(int i = 0; i < 4; i++){
+                            if (i==0){
+                                promoPiece = PieceType.QUEEN;
+                            } else if (i == 1) {
+                                promoPiece = PieceType.KNIGHT;
+                            } else if (i==2) {
+                                promoPiece = PieceType.ROOK;
+                            }else{
+                                promoPiece = PieceType.BISHOP;
+                            }
+                            ChessMove newMove = new ChessMove(myPosition, oneMoveUp, promoPiece);
+                            moveList.add(newMove);
+                        }
+                    }
+                    //Promotion Capture
+                    ChessPosition capPosLeft = new ChessPosition(myPosition.getRow()+1, myPosition.getColumn() -1);
+                    ChessPosition capPosRight = new ChessPosition(myPosition.getRow()+1, myPosition.getColumn()+1 );
+                    if(board.getPiece(capPosLeft) != null) {
+                        if (board.getPiece(capPosLeft).getPieceColor() != pieceColor) {
+                            PieceType promoPiece;
+                            for (int i=0; i < 4; i++) {
+                                if (i == 0) {
+                                    promoPiece=PieceType.QUEEN;
+                                } else if (i == 1) {
+                                    promoPiece=PieceType.KNIGHT;
+                                } else if (i == 2) {
+                                    promoPiece=PieceType.ROOK;
+                                } else {
+                                    promoPiece=PieceType.BISHOP;
+                                }
+                                ChessMove newMove=new ChessMove(myPosition, capPosLeft, promoPiece);
+                                moveList.add(newMove);
+                            }
+                        }
+                    }
+                    if(board.getPiece(capPosRight) != null) {
+                        if (board.getPiece(capPosRight).getPieceColor() != pieceColor) {
+                            PieceType promoPiece;
+                            for (int i=0; i < 4; i++) {
+                                if (i == 0) {
+                                    promoPiece=PieceType.QUEEN;
+                                } else if (i == 1) {
+                                    promoPiece=PieceType.KNIGHT;
+                                } else if (i == 2) {
+                                    promoPiece=PieceType.ROOK;
+                                } else {
+                                    promoPiece=PieceType.BISHOP;
+                                }
+                                ChessMove newMove=new ChessMove(myPosition, capPosRight, promoPiece);
+                                moveList.add(newMove);
+                            }
+                        }
+                    }
+                }else{
+                    ChessPosition oneMoveUp = new ChessPosition(myPosition.getRow()+1, myPosition.getColumn());
+                    if(board.getPiece(oneMoveUp) == null){
+                        ChessMove newMove = new ChessMove(myPosition, oneMoveUp, null);
+                        moveList.add(newMove);
+                    }
+                    //Capture White 2
+                    ChessPosition capPosLeft = new ChessPosition(myPosition.getRow()+1, myPosition.getColumn() -1);
+                    ChessPosition capPosRight = new ChessPosition(myPosition.getRow()+1, myPosition.getColumn()+1 );
+                    if(board.getPiece(capPosLeft) != null) {
+                        if (board.getPiece(capPosLeft).getPieceColor() != pieceColor) {
+                            ChessMove newMove=new ChessMove(myPosition, capPosLeft, null);
+                            moveList.add(newMove);
+                        }
+                    }
+                    if(board.getPiece(capPosRight) != null) {
+                        if (board.getPiece(capPosRight).getPieceColor() != pieceColor) {
+                            ChessMove newMove=new ChessMove(myPosition, capPosRight, null);
+                            moveList.add(newMove);
+                        }
+                    }
+                }
 
+
+            }else{
+                //Black Pawn
+                
+            }
 
         } else if (type == PieceType.QUEEN) {
             int RowInt = 0;
