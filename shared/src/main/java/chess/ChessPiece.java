@@ -15,6 +15,11 @@ public class ChessPiece {
     public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
         this.pieceColor = pieceColor;
         this.type = type;
+        if (type == PieceType.KING){
+            King king = new King(pieceColor, type);
+        } else if (type == PieceType.BISHOP) {
+            Bishop bishop = new Bishop(pieceColor, type);
+        }
     }
 
     /**
