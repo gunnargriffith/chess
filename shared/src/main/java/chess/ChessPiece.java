@@ -1,6 +1,8 @@
 package chess;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Represents a single chess piece
@@ -8,16 +10,14 @@ import java.util.Collection;
  * Note: You can add to this class, but you may not alter
  * signature of the existing methods.
  */
-public abstract class ChessPiece {
+public class ChessPiece {
+    private ChessGame.TeamColor pieceColor;
+    private ChessPiece.PieceType type;
 
-
-//    public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
-//        this.pieceColor = pieceColor;
-//        this.type = type;
-//    }
-
-
-
+    public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
+        this.pieceColor = pieceColor;
+        this.type = type;
+    }
 
     /**
      * The various different chess piece options
@@ -44,11 +44,25 @@ public abstract class ChessPiece {
      * @return which type of chess piece this piece is
      */
     public PieceType getPieceType() {
-        return null;
+        return type;
     }
 
 
-    public abstract ChessGame.TeamColor getPieceColor();
+    public  ChessGame.TeamColor getPieceColor(){
+        return pieceColor;
+    };
+
+    private boolean inBounds(ChessPosition pos){
+        if (pos.getRow() > 8 || pos.getRow() < 1){
+            return false;
+        }
+        if (pos.getColumn() > 8 || pos.getColumn() < 1){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
     /**
      * Calculates all the positions a chess piece can move to
@@ -58,6 +72,80 @@ public abstract class ChessPiece {
      * @return Collection of valid moves
      */
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        throw new RuntimeException("Not implemented");
+
+       var moveList = new HashSet<ChessMove>();
+
+        if(type == PieceType.KING){
+
+        } else if (type == PieceType.KNIGHT) {
+
+        } else if (type == PieceType.PAWN) {
+
+        } else if (type == PieceType.QUEEN) {
+
+        } else {
+            //all the contious pieces;
+            int RowInt = 0;
+            int ColInt = 0;
+
+            for (int i=0; i < 4; i++) {
+                ChessPosition currentPostion=myPosition;
+                boolean collision=false;
+                boolean boundBool=true;
+
+                if (i == 0) {
+                    if(type == PieceType.BISHOP) {
+                        //up-left
+                        RowInt=1;
+                        ColInt=-1;
+                    }
+                } else if (i == 1) {
+                    if(type == PieceType.BISHOP) {
+                        //up-right
+                        RowInt=1;
+                        ColInt=1;
+                    }
+                } else if (i == 2) {
+                    if (type == PieceType.BISHOP) {
+                        //down-left
+                        RowInt=-1;
+                        ColInt=-1;
+                    }
+                } else {
+                    if (type == PieceType.BISHOP) {
+                        //down-right
+                        RowInt=-1;
+                        ColInt=1;
+                    }
+                }
+
+                while (boundBool && !collision) {
+                    currentPostion=new ChessPosition(currentPostion.getRow() + RowInt, currentPostion.getColumn() + ColInt);
+                    boundBool=inBounds(currentPostion);
+                    if (!boundBool) {
+                        //don't add move
+                    } else if (board.getPiece(currentPostion) != null) {
+                        collision=true;
+                        ChessPiece hitPiece=board.getPiece(currentPostion);
+                        if (hitPiece.getPieceColor() != pieceColor) {
+                            ChessMove move = new ChessMove(myPosition, currentPostion, null);
+                            moveList.add(move);
+                        }
+                    } else {
+                        ChessMove move=new ChessMove(myPosition, currentPostion, null);
+                        moveList.add(move);
+                    }
+                }
+            }
+        }
+        return moveList;
     }
+
+
+
+
+
+
+
+
 }

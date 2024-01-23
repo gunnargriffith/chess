@@ -23,7 +23,7 @@ public class TestFactory {
     }
 
     public static ChessPiece getNewPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
-        if(type == ChessPiece.PieceType.KING){
+        /*if(type == ChessPiece.PieceType.KING){
             King piece = new King(pieceColor, type);
             return piece;
         } else if (type == ChessPiece.PieceType.QUEEN) {
@@ -41,7 +41,9 @@ public class TestFactory {
         }else{
             Pawn piece = new Pawn(pieceColor, type);
             return piece;
-        }
+        }*/
+        ChessPiece piece = new ChessPiece(pieceColor, type);
+        return piece;
     }
 
     public static ChessPosition getNewPosition(int row, int col) {
