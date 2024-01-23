@@ -76,6 +76,41 @@ public class ChessPiece {
        var moveList = new HashSet<ChessMove>();
 
         if(type == PieceType.KING){
+            boolean boundBool=true;
+            int row =myPosition.getRow();
+            int column =myPosition.getColumn();
+            for (int i = 0; i < 8; i++){
+                ChessPosition newPosition;
+                if(i ==0){
+                    newPosition = new ChessPosition(row+1,column-1);
+                } else if (i==1) {
+                    newPosition = new ChessPosition(row+1,column);
+                }else if (i==2) {
+                    newPosition = new ChessPosition(row+1,column+1);
+                }else if (i==3) {
+                    newPosition = new ChessPosition(row,column+1);
+                }else if (i==4) {
+                    newPosition = new ChessPosition(row-1,column+1);
+                }else if (i==5) {
+                    newPosition = new ChessPosition(row-1,column);
+                }else if (i==6) {
+                    newPosition = new ChessPosition(row-1,column-1);
+                }else{
+                    newPosition = new ChessPosition(row,column-1);
+                }
+
+                if (inBounds(newPosition)){
+                    ChessPiece boardPiece =board.getPiece(newPosition);
+                    if(boardPiece == null){
+                        ChessMove move = new ChessMove(myPosition, newPosition, null);
+                        moveList.add(move);
+                    } else if (boardPiece.getPieceColor() != pieceColor) {
+                        ChessMove move = new ChessMove(myPosition, newPosition, null);
+                        moveList.add(move);
+                    }
+                }
+            }
+
 
         } else if (type == PieceType.KNIGHT) {
 
