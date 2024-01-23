@@ -111,7 +111,6 @@ public class ChessPiece {
                 }
             }
 
-
         } else if (type == PieceType.KNIGHT) {
 
         } else if (type == PieceType.PAWN) {
@@ -133,24 +132,40 @@ public class ChessPiece {
                         //up-left
                         RowInt=1;
                         ColInt=-1;
+                    }else{
+                        //Rook left
+                        RowInt = 0;
+                        ColInt = -1;
                     }
                 } else if (i == 1) {
                     if(type == PieceType.BISHOP) {
                         //up-right
                         RowInt=1;
                         ColInt=1;
+                    }else{
+                        //Rook Up
+                        RowInt = 1;
+                        ColInt = 0;
                     }
                 } else if (i == 2) {
                     if (type == PieceType.BISHOP) {
                         //down-left
                         RowInt=-1;
                         ColInt=-1;
+                    }else{
+                        //Rook right
+                        RowInt = 0;
+                        ColInt = 1;
                     }
                 } else {
                     if (type == PieceType.BISHOP) {
                         //down-right
                         RowInt=-1;
                         ColInt=1;
+                    }else{
+                        //Rook down
+                        RowInt = -1;
+                        ColInt = 0;
                     }
                 }
 
