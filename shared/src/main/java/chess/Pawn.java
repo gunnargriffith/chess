@@ -1,4 +1,11 @@
 package chess;
 
-public class Pawn {
+public class Pawn extends ChessPiece{
+  private ChessGame.TeamColor pieceColor;
+  private PieceType type;
+
+  public Pawn(ChessGame.TeamColor pieceColor, PieceType type) {
+    this.pieceColor=pieceColor;
+    this.type=type;
+  }
 }

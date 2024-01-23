@@ -23,7 +23,25 @@ public class TestFactory {
     }
 
     public static ChessPiece getNewPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
-        return new ChessPiece(pieceColor, type);
+        if(type == ChessPiece.PieceType.KING){
+            King piece = new King(pieceColor, type);
+            return piece;
+        } else if (type == ChessPiece.PieceType.QUEEN) {
+            Queen piece = new Queen(pieceColor, type);
+            return piece;
+        } else if (type == ChessPiece.PieceType.BISHOP) {
+            Bishop piece = new Bishop(pieceColor, type);
+            return piece;
+        } else if (type == ChessPiece.PieceType.ROOK) {
+            Rook piece = new Rook(pieceColor, type);
+            return piece;
+        } else if (type == ChessPiece.PieceType.KNIGHT) {
+            Knight piece = new Knight(pieceColor, type);
+            return piece;
+        }else{
+            Pawn piece = new Pawn(pieceColor, type);
+            return piece;
+        }
     }
 
     public static ChessPosition getNewPosition(int row, int col) {

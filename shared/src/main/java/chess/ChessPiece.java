@@ -12,15 +12,15 @@ public class ChessPiece {
 
     private ChessGame.TeamColor pieceColor = null;
     private ChessPiece.PieceType type = null;
-    public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
-        this.pieceColor = pieceColor;
-        this.type = type;
-        if (type == PieceType.KING){
-            King king = new King(pieceColor, type);
-        } else if (type == PieceType.BISHOP) {
-            Bishop bishop = new Bishop(pieceColor, type);
-        }
-    }
+//    public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
+//        this.pieceColor = pieceColor;
+//        this.type = type;
+////        if (type == PieceType.KING){
+////            King king = new King(pieceColor, type);
+////        } else if (type == PieceType.BISHOP) {
+////            Bishop bishop = new Bishop(pieceColor, type);
+////        }
+//    }
 
     /**
      * The various different chess piece options

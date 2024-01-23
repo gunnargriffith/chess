@@ -6,11 +6,12 @@ import java.util.Set;
 
 public class Bishop extends ChessPiece{
   private ChessGame.TeamColor pieceColor;
+  private PieceType type;
 
 
   public Bishop(ChessGame.TeamColor pieceColor, PieceType type) {
-    super(pieceColor, type);
     this.pieceColor = pieceColor;
+    this.type = type;
   }
 
 
