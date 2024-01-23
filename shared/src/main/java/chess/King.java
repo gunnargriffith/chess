@@ -7,4 +7,9 @@ public class King extends ChessPiece{
     this.pieceColor = pieceColor;
     this.type = type;
   }
+
+  @Override
+  public ChessGame.TeamColor getPieceColor() {
+    return pieceColor;
+  }
 }

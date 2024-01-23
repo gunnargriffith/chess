@@ -8,19 +8,16 @@ import java.util.Collection;
  * Note: You can add to this class, but you may not alter
  * signature of the existing methods.
  */
-public class ChessPiece {
+public abstract class ChessPiece {
 
-    private ChessGame.TeamColor pieceColor = null;
-    private ChessPiece.PieceType type = null;
+
 //    public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
 //        this.pieceColor = pieceColor;
 //        this.type = type;
-////        if (type == PieceType.KING){
-////            King king = new King(pieceColor, type);
-////        } else if (type == PieceType.BISHOP) {
-////            Bishop bishop = new Bishop(pieceColor, type);
-////        }
 //    }
+
+
+
 
     /**
      * The various different chess piece options
@@ -37,17 +34,21 @@ public class ChessPiece {
     /**
      * @return Which team this chess piece belongs to
      */
+
+
     public ChessGame.TeamColor getTeamColor() {
-        return pieceColor;
+        return null;
     }
 
     /**
      * @return which type of chess piece this piece is
      */
     public PieceType getPieceType() {
-        return type;
+        return null;
     }
 
+
+    public abstract ChessGame.TeamColor getPieceColor();
 
     /**
      * Calculates all the positions a chess piece can move to

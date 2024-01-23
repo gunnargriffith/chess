@@ -14,12 +14,16 @@ public class Bishop extends ChessPiece{
     this.type = type;
   }
 
+  @Override
+  public ChessGame.TeamColor getPieceColor() {
+    return pieceColor;
+  }
 
   private boolean inBounds(ChessPosition pos){
-    if (pos.getRow() > 8 || pos.getRow() < 0){
+    if (pos.getRow() > 8 || pos.getRow() <= 0){
       return false;
     }
-    if (pos.getColumn() > 8 || pos.getColumn() < 0){
+    if (pos.getColumn() > 8 || pos.getColumn() <= 0){
       return false;
     }
     return true;
@@ -29,22 +33,22 @@ public class Bishop extends ChessPiece{
   public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
     Set<ChessMove> moveList = new HashSet<>();
 
-    boolean collision = false;
-    boolean boundBool = true;
     int RowInt = 0;
     int ColInt = 0;
-
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < 4; i++){
       ChessPosition currentPostion = myPosition;
+      boolean collision = false;
+      boolean boundBool = true;
+
       if (i == 0){
         //up-left
         RowInt = 1;
         ColInt = -1;
-      } else if (i == 2) {
+      } else if (i == 1) {
         //up-right
         RowInt = 1;
         ColInt = 1;
-      } else if (i == 3) {
+      } else if (i == 2) {
         //down-left
         RowInt = -1;
         ColInt = -1;
@@ -54,7 +58,7 @@ public class Bishop extends ChessPiece{
         ColInt = 1;
       }
 
-      while(boundBool && collision){
+      while(boundBool && !collision){
         currentPostion = new ChessPosition(currentPostion.getRow() + RowInt, currentPostion.getColumn() + ColInt);
         boundBool = inBounds(currentPostion);
         if(!boundBool){
@@ -62,7 +66,8 @@ public class Bishop extends ChessPiece{
         } else if (board.getPiece(currentPostion) != null) {
           collision = true;
           ChessPiece hitPiece = board.getPiece(currentPostion);
-          if(hitPiece.getTeamColor() != pieceColor){
+          ChessGame.TeamColor hitColor = hitPiece.getPieceColor();
+          if(hitPiece.getPieceColor() != pieceColor){
             ChessMove move = new ChessMove(myPosition, currentPostion, null);
             moveList.add(move);
           }
