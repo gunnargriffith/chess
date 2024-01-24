@@ -2,6 +2,7 @@ package chess;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -505,10 +506,15 @@ public class ChessPiece {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ChessPiece that)) return false;
+        return getPieceColor() == that.getPieceColor() && type == that.type;
+    }
 
-
-
-
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPieceColor(), type);
+    }
 }
