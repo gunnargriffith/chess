@@ -31,13 +31,9 @@ public class ChessPiece {
         PAWN
     }
 
-    /**
-     * @return Which team this chess piece belongs to
-     */
-
 
     public ChessGame.TeamColor getTeamColor() {
-        return null;
+        return pieceColor;
     }
 
     /**
@@ -47,7 +43,9 @@ public class ChessPiece {
         return type;
     }
 
-
+    /**
+     * @return Which team this chess piece belongs to
+     */
     public  ChessGame.TeamColor getPieceColor(){
         return pieceColor;
     };
