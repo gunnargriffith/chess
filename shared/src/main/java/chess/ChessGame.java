@@ -1,6 +1,7 @@
 package chess;
 
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  * For a class that can manage a chess game, making moves on a board
@@ -99,8 +100,8 @@ public class ChessGame {
      * @param board the new board to use
      */
     public void setBoard(ChessBoard board) {
-        //ChessPiece replacePiece = new ChessPiece()
-
+        theBoard = board;
+        //need a deepcopy?
     }
 
     /**
@@ -110,5 +111,19 @@ public class ChessGame {
      */
     public ChessBoard getBoard() {
         return theBoard;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessGame chessGame = (ChessGame) o;
+        return Objects.equals(theBoard, chessGame.theBoard) && teamTurn == chessGame.teamTurn;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(theBoard, teamTurn);
     }
 }
