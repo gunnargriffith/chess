@@ -1,6 +1,7 @@
 package chess;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
 /**
@@ -50,7 +51,12 @@ public class ChessGame {
      * startPosition
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
-        throw new RuntimeException("Not implemented");
+        ChessPiece currentPiece = theBoard.getPiece(startPosition);
+        Collection<ChessMove> moves = currentPiece.pieceMoves(theBoard, startPosition);
+
+        //can't put yourself in check
+        //Must move yourself out of check
+        return moves;
     }
 
     /**
@@ -70,7 +76,30 @@ public class ChessGame {
      * @return True if the specified team is in check
      */
     public boolean isInCheck(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        boolean checkRet = false;
+        Collection<ChessMove> allMoves = new HashSet<ChessMove>();
+        ChessPosition kingPos = null;
+        //If any piece of the other team can capture the King, it's in check
+        for(int i = 0; i< 8; i++){
+            for(int k = 0; k < 8; k++){
+                ChessPosition currentPos = new ChessPosition(i+1,k+1);
+                ChessPiece currentPiece = theBoard.getPiece(currentPos);
+                if(currentPiece.getPieceColor() != teamColor){
+                    Collection<ChessMove> newMoves = currentPiece.pieceMoves(theBoard,currentPos);
+                    allMoves.addAll(newMoves);
+                } else if (currentPiece.getPieceType() == ChessPiece.PieceType.KING) {
+                    kingPos = currentPos;
+                }
+            }
+        }
+
+        for (ChessMove currentMove: allMoves) {
+            if(currentMove.getEndPosition() == kingPos){
+                checkRet = true;
+            }
+        }
+
+        return checkRet;
     }
 
     /**
