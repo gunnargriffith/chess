@@ -97,11 +97,12 @@ public class ChessGame {
         ChessPosition endPos = move.getEndPosition();
         ChessPiece thePiece = theBoard.getPiece(startPos);
         Collection<ChessMove> validMoves = validMoves(startPos);
-        boolean invalidHit = false;
-        if(!validMoves.contains(move)){
-            invalidHit = true;
-            throw new InvalidMoveException("Not in the valid move list");
-        }else{
+
+        if(thePiece == null || thePiece.getTeamColor() != teamTurn){
+            throw new InvalidMoveException("That's not your piece");
+        } else if (!validMoves.contains(move)) {
+            throw new InvalidMoveException("That's not your piece");
+        } else{
             //Move is valid
             //Check for promotion
             if(move.getPromotionPiece() != null){
@@ -125,30 +126,26 @@ public class ChessGame {
                 theBoard.addPiece(endPos, thePiece);
             }
 
+            //Change turn
+            if (teamTurn == TeamColor.WHITE) {
+                setTeamTurn(TeamColor.BLACK);
+            } else {
+                setTeamTurn(TeamColor.WHITE);
+            }
 
-            if(invalidHit) {
-                //Change turn
-                if (teamTurn == TeamColor.WHITE) {
-                    setTeamTurn(TeamColor.BLACK);
-                } else {
-                    setTeamTurn(TeamColor.WHITE);
+            //Move made - do other checks
+            //Check/mate/stale loop
+            if (isInCheck(teamTurn)) {
+                //Checkmate check
+                if (isInCheckmate(teamTurn)) {
+                    System.out.println("Checkmate " + teamTurn + " wins!");
                 }
-
-                //Move made - do other checks
-                //Check/mate/stale loop
-                if (isInCheck(teamTurn)) {
-                    //Checkmate check
-                    if (isInCheckmate(teamTurn)) {
-                        System.out.println("Checkmate " + teamTurn + " wins!");
-                    }
-                } else {
-                    //Stalemate
-                    if (isInStalemate(teamTurn)) {
-                        System.out.println("Stalemate!");
-                    }
+            } else {
+                //Stalemate
+                if (isInStalemate(teamTurn)) {
+                    System.out.println("Stalemate!");
                 }
             }
-            
 
         }
     }
