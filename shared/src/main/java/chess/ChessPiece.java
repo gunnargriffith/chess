@@ -32,6 +32,11 @@ public class ChessPiece {
         PAWN
     }
 
+    public ChessPiece clonePiece(){
+        ChessPiece retPiece = new ChessPiece(pieceColor, type);
+        return retPiece;
+    }
+
 
     public ChessGame.TeamColor getTeamColor() {
         return pieceColor;
