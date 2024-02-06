@@ -104,6 +104,20 @@ public class ChessGame {
             //Move is valid
             //Check for promotion
             if(move.getPromotionPiece() != null){
+                theBoard.addPiece(startPos, null);
+                if(move.getPromotionPiece() == ChessPiece.PieceType.QUEEN){
+                    ChessPiece queen = new ChessPiece(thePiece.getTeamColor(), ChessPiece.PieceType.QUEEN);
+                    theBoard.addPiece(endPos, queen);
+                } else if (move.getPromotionPiece() == ChessPiece.PieceType.BISHOP) {
+                    ChessPiece bishop = new ChessPiece(thePiece.getTeamColor(), ChessPiece.PieceType.BISHOP);
+                    theBoard.addPiece(endPos, bishop);
+                } else if (move.getPromotionPiece() == ChessPiece.PieceType.KNIGHT) {
+                    ChessPiece knight = new ChessPiece(thePiece.getTeamColor(), ChessPiece.PieceType.KNIGHT);
+                    theBoard.addPiece(endPos, knight);
+                } else if (move.getPromotionPiece() == ChessPiece.PieceType.ROOK) {
+                    ChessPiece rook = new ChessPiece(thePiece.getTeamColor(), ChessPiece.PieceType.ROOK);
+                    theBoard.addPiece(endPos,rook);
+                }
 
             }else{
                 theBoard.addPiece(startPos, null);
@@ -112,7 +126,6 @@ public class ChessGame {
 
 
             //Move made - do other checks
-
             //Check/mate/stale loop
 
 
@@ -150,13 +163,14 @@ public class ChessGame {
             }
         }
 
-        for (ChessMove currentMove: allMoves) {
-            if(currentMove.getEndPosition().getRow() == kingPos.getRow()){
-                if(currentMove.getEndPosition().getColumn() == kingPos.getColumn())
-                checkRet = true;
+        if(kingPos != null) {
+            for (ChessMove currentMove : allMoves) {
+                if (currentMove.getEndPosition().getRow() == kingPos.getRow()) {
+                    if (currentMove.getEndPosition().getColumn() == kingPos.getColumn())
+                        checkRet=true;
+                }
             }
         }
-
         return checkRet;
     }
 
