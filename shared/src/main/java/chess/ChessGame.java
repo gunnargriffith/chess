@@ -80,7 +80,6 @@ public class ChessGame {
             }
 
         }
-
         //can't put yourself in check
         //Must move yourself out of check
         return retMoves;
@@ -125,11 +124,27 @@ public class ChessGame {
             }
 
 
+            //Change turn
+            if(teamTurn == TeamColor.WHITE){
+                setTeamTurn(TeamColor.BLACK);
+            }else{
+                setTeamTurn(TeamColor.WHITE);
+            }
+
             //Move made - do other checks
             //Check/mate/stale loop
+            if(isInCheck(teamTurn)){
+                //Checkmate check
+                if(isInCheckmate(teamTurn)){
+                    System.out.println("Checkmate " + teamTurn + " wins!");
+                }
+            }else{
+                //Stalemate
+                if(isInStalemate(teamTurn)){
+                    System.out.println("Stalemate!");
+                }
+            }
 
-
-            //Change turn
 
 
         }
@@ -192,7 +207,27 @@ public class ChessGame {
      * @return True if the specified team is in stalemate, otherwise false
      */
     public boolean isInStalemate(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+
+        Collection<ChessMove> allValidMoves = new HashSet<>();
+
+        for(int i = 0; i< 8; i++){
+            for(int k = 0; k < 8; k++){
+                ChessPosition currentPos = new ChessPosition(i+1,k+1);
+                ChessPiece currentPiece = theBoard.getPiece(currentPos);
+                if(currentPiece != null) {
+                    if (currentPiece.getPieceColor() == teamColor) {
+                        Collection<ChessMove> tempSet = validMoves(currentPos);
+                        allValidMoves.addAll(tempSet);
+                    }
+                }
+            }
+        }
+        if(allValidMoves.isEmpty()){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
     /**
