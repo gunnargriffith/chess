@@ -53,26 +53,13 @@ public class ChessGame {
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
         ChessPiece currentPiece = theBoard.getPiece(startPosition);
         Collection<ChessMove> moves = currentPiece.pieceMoves(theBoard, startPosition);
+        ChessBoard copyBoard = theBoard.deepCopyBoard();
 
         //can't put yourself in check
         //Must move yourself out of check
         return moves;
     }
 
-
-    private ChessBoard deepCopyBoard(ChessBoard ogBoard){
-        ChessBoard copyBoard = new ChessBoard();
-
-        for(int i = 0; i < 8; i++){
-            for(int k = 0; k < 8; k++){
-                ChessPosition currentPos = new ChessPosition(i+1,k+1);
-                ChessPiece currentPiece = ogBoard.getPiece(currentPos);
-                ChessPiece clonedPiece = currentPiece.clonePiece();
-                copyBoard.addPiece(currentPos, clonedPiece);
-            }
-        }
-        return copyBoard;
-    }
 
     /**
      * Makes a move in a chess game

@@ -36,6 +36,20 @@ public class ChessBoard {
         return boardArray[position.getRow()-1][position.getColumn()-1];
     }
 
+    public ChessBoard deepCopyBoard(){
+        ChessBoard copyBoard = new ChessBoard();
+
+        for(int i = 0; i < 8; i++){
+            for(int k = 0; k < 8; k++){
+                ChessPosition currentPos = new ChessPosition(i+1,k+1);
+                ChessPiece currentPiece = getPiece(currentPos);
+                ChessPiece clonedPiece = currentPiece.clonePiece();
+                copyBoard.addPiece(currentPos, clonedPiece);
+            }
+        }
+        return copyBoard;
+    }
+
     /**
      * Sets the board to the default starting board
      * (How the game of chess normally starts)
