@@ -181,7 +181,7 @@ public class ChessPiece {
                         if(inBounds(currentPos)){
                             if(board.getPiece(currentPos) != null) {
                                 ChessPiece hitPiece=board.getPiece(currentPos);
-                                if (hitPiece.getTeamColor() != pieceColor) {
+                                if (hitPiece.getTeamColor() != pieceColor && inBounds(currentPos)) {
                                     ChessMove move=new ChessMove(myPosition, currentPos, null);
                                     moveList.add(move);
                                 }
@@ -221,10 +221,10 @@ public class ChessPiece {
                             currentPos = capRight;
                         }
                         if(inBounds(currentPos)){
-                            if(board.getPiece(currentPos) != null) {
+                            if(board.getPiece(currentPos) != null && inBounds(currentPos)) {
                                 ChessPiece hitPiece=board.getPiece(currentPos);
                                 if (hitPiece.getTeamColor() != pieceColor) {
-                                    for(int k = 0; i < 4; k++){
+                                    for(int k = 0; k < 4; k++){
                                         PieceType promo;
                                         if(k==0){
                                             promo = PieceType.QUEEN;
@@ -271,7 +271,7 @@ public class ChessPiece {
                             currentPos = capRight;
                         }
                         if(inBounds(currentPos)){
-                            if(board.getPiece(currentPos) != null) {
+                            if(board.getPiece(currentPos) != null && inBounds(currentPos)) {
                                 ChessPiece hitPiece=board.getPiece(currentPos);
                                 if (hitPiece.getTeamColor() != pieceColor) {
                                     ChessMove move=new ChessMove(myPosition, currentPos, null);
@@ -313,7 +313,7 @@ public class ChessPiece {
                             currentPos = capRight;
                         }
                         if(inBounds(currentPos)){
-                            if(board.getPiece(currentPos) != null) {
+                            if(board.getPiece(currentPos) != null && inBounds(currentPos)) {
                                 ChessPiece hitPiece=board.getPiece(currentPos);
                                 if (hitPiece.getTeamColor() != pieceColor) {
                                     for(int k = 0; k < 4; k++){
