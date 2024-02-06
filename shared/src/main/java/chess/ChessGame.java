@@ -51,13 +51,39 @@ public class ChessGame {
      * startPosition
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
+        Collection<ChessMove> retMoves = new HashSet<>();
+
         ChessPiece currentPiece = theBoard.getPiece(startPosition);
         Collection<ChessMove> moves = currentPiece.pieceMoves(theBoard, startPosition);
+
+        ChessGame copyGame = new ChessGame();
         ChessBoard copyBoard = theBoard.deepCopyBoard();
+        copyGame.setBoard(copyBoard);
+
+        for (ChessMove move: moves) {
+            ChessPosition currentStart = move.getStartPosition();
+            ChessPosition currentEnd = move.getEndPosition();
+            ChessPiece hitPiece = copyBoard.getPiece(currentEnd);
+            //make move
+            copyBoard.addPiece(currentStart, null);
+            copyBoard.addPiece(currentEnd, currentPiece);
+            //set board again?
+            if(!copyGame.isInCheck(currentPiece.getTeamColor())){
+                retMoves.add(move);
+            }
+            //Move back
+            copyBoard.addPiece(currentStart, currentPiece);
+            if(hitPiece != null){
+                copyBoard.addPiece(currentEnd, hitPiece);
+            }else{
+                copyBoard.addPiece(currentEnd, null);
+            }
+
+        }
 
         //can't put yourself in check
         //Must move yourself out of check
-        return moves;
+        return retMoves;
     }
 
 
@@ -86,17 +112,22 @@ public class ChessGame {
             for(int k = 0; k < 8; k++){
                 ChessPosition currentPos = new ChessPosition(i+1,k+1);
                 ChessPiece currentPiece = theBoard.getPiece(currentPos);
-                if(currentPiece.getPieceColor() != teamColor){
-                    Collection<ChessMove> newMoves = currentPiece.pieceMoves(theBoard,currentPos);
-                    allMoves.addAll(newMoves);
-                } else if (currentPiece.getPieceType() == ChessPiece.PieceType.KING) {
-                    kingPos = currentPos;
+                if(currentPiece != null) {
+                    if (currentPiece.getPieceColor() != teamColor) {
+                        Collection<ChessMove> newMoves=currentPiece.pieceMoves(theBoard, currentPos);
+                        allMoves.addAll(newMoves);
+                    } else if (currentPiece.getPieceType() == ChessPiece.PieceType.KING ) {
+                        if(currentPiece.getTeamColor() == teamColor) {
+                            kingPos=currentPos;
+                        }
+                    }
                 }
             }
         }
 
         for (ChessMove currentMove: allMoves) {
-            if(currentMove.getEndPosition() == kingPos){
+            if(currentMove.getEndPosition().getRow() == kingPos.getRow()){
+                if(currentMove.getEndPosition().getColumn() == kingPos.getColumn())
                 checkRet = true;
             }
         }

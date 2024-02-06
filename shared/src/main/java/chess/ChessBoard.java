@@ -43,8 +43,10 @@ public class ChessBoard {
             for(int k = 0; k < 8; k++){
                 ChessPosition currentPos = new ChessPosition(i+1,k+1);
                 ChessPiece currentPiece = getPiece(currentPos);
-                ChessPiece clonedPiece = currentPiece.clonePiece();
-                copyBoard.addPiece(currentPos, clonedPiece);
+                if(currentPiece != null) {
+                    ChessPiece clonedPiece=currentPiece.clonePiece();
+                    copyBoard.addPiece(currentPos, clonedPiece);
+                }
             }
         }
         return copyBoard;
