@@ -13,7 +13,7 @@ public class ChessBoard {
     private ChessPiece[][] boardArray = new ChessPiece[8][8];
 
     public ChessBoard() {
-        
+        resetBoard();
     }
 
     /**
@@ -27,6 +27,7 @@ public class ChessBoard {
             int row=position.getRow() - 1;
             int col=position.getColumn() - 1;
             boardArray[row][col]=piece;
+            piece.setPiecePosition(position);
         }
     }
 
@@ -109,14 +110,15 @@ public class ChessBoard {
         //Pawns
         for(int i = 1; i < 9; i++){
             ChessPiece wPawn = new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.PAWN);
-            ChessPosition wPos = new ChessPosition(1, i);
+            ChessPosition wPos = new ChessPosition(2, i);
             addPiece(wPos, wPawn);
         }
         for(int i = 1; i < 9; i++){
             ChessPiece bPawn = new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.PAWN);
-            ChessPosition bPos = new ChessPosition(8, i);
+            ChessPosition bPos = new ChessPosition(7, i);
             addPiece(bPos, bPawn);
         }
+        //System.out.println("HIT");
     }
 
 
@@ -130,5 +132,12 @@ public class ChessBoard {
     @Override
     public int hashCode() {
         return Arrays.hashCode(boardArray);
+    }
+
+    @Override
+    public String toString() {
+        return "ChessBoard{" +
+                "boardArray=" + Arrays.toString(boardArray) +
+                '}';
     }
 }
