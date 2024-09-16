@@ -8,6 +8,8 @@ package chess;
  */
 public class ChessBoard {
 
+    private int[][] boardArray = new int[8][8];
+
     public ChessBoard() {
         
     }
