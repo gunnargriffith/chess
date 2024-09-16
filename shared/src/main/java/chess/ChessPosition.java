@@ -34,6 +34,18 @@ public class ChessPosition {
         return col;
     }
 
+    public boolean inBonds(){
+        boolean inbonds = true;
+        if(row < 1 || row > 8){
+            inbonds = false;
+        }
+        if(col < 1 || col > 8){
+            inbonds = false;
+        }
+        return inbonds;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
