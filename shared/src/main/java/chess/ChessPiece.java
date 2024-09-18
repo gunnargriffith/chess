@@ -137,6 +137,55 @@ public class ChessPiece {
                 }
             }
         } else if (type == PieceType.PAWN) {
+            if(pieceColor == ChessGame.TeamColor.WHITE){
+                if(initalRow == 2){
+                    //firstRow
+                    ChessPosition newPos = new ChessPosition(4, initalCol);
+                    ChessPosition firstSquare = new ChessPosition(3, initalCol);
+                    ChessPiece hitPiece =board.getPiece(newPos);
+                    ChessPiece hitPiece2 =board.getPiece(firstSquare);
+                    if(hitPiece2 == null){
+                        ChessMove move = new ChessMove(myPosition, firstSquare);
+                        possibleMoves.add(move);
+                        if(hitPiece == null) {
+                            move= new ChessMove(myPosition, newPos);
+                            possibleMoves.add(move);
+                        }
+
+                    }
+                } else if (initalRow == 7) {
+                    //promotion zone
+
+                }else{
+                    ChessPosition newPos = new ChessPosition(initalRow + 1, initalCol);
+                    ChessPiece hitPiece =board.getPiece(newPos);
+                    if(hitPiece == null){
+                        ChessMove move = new ChessMove(myPosition, newPos);
+                        possibleMoves.add(move);
+                    }
+
+                    //captures
+                    for(int i = 0; i < 2; i++){
+                        if(i ==0) {
+                            newPos=new ChessPosition(initalRow+1, initalCol-1);
+                        }else{
+                            newPos=new ChessPosition(initalRow+1, initalCol+1);
+                        }
+                        hitPiece = board.getPiece(newPos);
+                        if(newPos.inBonds()) {
+                            if (hitPiece != null) {
+                                if (hitPiece.getTeamColor() != pieceColor) {
+                                    ChessMove move=new ChessMove(myPosition, newPos);
+                                    possibleMoves.add(move);
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }else{
+                //Black pawns
+            }
             
         }else{
             int l1 = 0;
