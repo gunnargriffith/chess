@@ -102,6 +102,40 @@ public class ChessPiece {
                     }
                 }
             }
+        } else if (type == PieceType.KNIGHT) {
+            for(int i = 0; i < 8; i++){
+                ChessPosition newPos = new ChessPosition();
+                if(i == 0){
+                    newPos = new ChessPosition(initalRow + 2, initalCol -1);
+                } else if (i == 1) {
+                    newPos = new ChessPosition(initalRow + 2, initalCol+1);
+                }else if (i == 2) {
+                    newPos = new ChessPosition(initalRow + 1, initalCol + 2);
+                }else if (i == 3) {
+                    newPos = new ChessPosition(initalRow - 1, initalCol + 2);
+                }else if (i == 4) {
+                    newPos = new ChessPosition(initalRow - 2, initalCol - 1);
+                }else if (i == 5) {
+                    newPos = new ChessPosition(initalRow - 2, initalCol + 1);
+                }else if (i == 6) {
+                    newPos = new ChessPosition(initalRow - 1, initalCol - 2);
+                }else{
+                    newPos = new ChessPosition(initalRow + 1, initalCol - 2);
+                }
+
+                if(newPos.inBonds()){
+                    ChessPiece hitPiece = board.getPiece(newPos);
+                    if(hitPiece != null){
+                        if(hitPiece.getTeamColor() != pieceColor) {
+                            ChessMove move=new ChessMove(myPosition, newPos);
+                            possibleMoves.add(move);
+                        }
+                    }else{
+                        ChessMove move=new ChessMove(myPosition, newPos);
+                        possibleMoves.add(move);
+                    }
+                }
+            }
         }
 
 
