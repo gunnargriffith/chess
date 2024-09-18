@@ -136,6 +136,68 @@ public class ChessPiece {
                     }
                 }
             }
+        } else if (type == PieceType.PAWN) {
+            
+        }else{
+            int l1 = 0;
+            int l2 = 0;
+            if(type == PieceType.QUEEN){
+                l1 = 0;
+                l2 = 8;
+            } else if (type == PieceType.ROOK) {
+                l1 = 0;
+                l2 = 3;
+            } else if (type == PieceType.BISHOP) {
+                l1 = 4;
+                l2 = 8;
+            }
+            ChessPosition newPos = new ChessPosition();
+            for(int i = l1; i < l2; i++){
+                boolean edgeHit = false;
+                int currentRow=initalRow;
+                int currentCol=initalCol;
+                while(!edgeHit) {
+                    if (i == 0) {
+                        currentRow += 1;
+                    } else if (i == 1) {
+                        currentCol += 1;
+                    }else if (i == 2) {
+                        currentRow -= 1;
+                    }else if (i == 3) {
+                        currentCol -= 1;
+                    }else if (i == 4) {
+                        currentRow += 1;
+                        currentCol -= 1;
+                    }else if (i == 5) {
+                        currentRow += 1;
+                        currentCol += 1;
+                    }else if (i == 6) {
+                        currentRow -= 1;
+                        currentCol += 1;
+                    }else{
+                        currentRow -= 1;
+                        currentCol -= 1;
+                    }
+                    newPos=new ChessPosition(currentRow, currentCol);
+
+
+                    if(newPos.inBonds()){
+                        ChessPiece hitPiece = board.getPiece(newPos);
+                        if(hitPiece != null){
+                            if(hitPiece.getTeamColor() != pieceColor) {
+                                ChessMove move=new ChessMove(myPosition, newPos);
+                                possibleMoves.add(move);
+                            }
+                            edgeHit = true;
+                        }else{
+                            ChessMove move=new ChessMove(myPosition, newPos);
+                            possibleMoves.add(move);
+                        }
+                    }else{
+                        edgeHit = true;
+                    }
+                }
+            }
         }
 
 
