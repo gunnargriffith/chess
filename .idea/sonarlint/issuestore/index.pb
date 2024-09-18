@@ -17,3 +17,13 @@ Y
 )shared/src/main/java/chess/ChessMove.java,c\5\c52f67c55315a844e23611bb848b35269aaedb66
 Z
 *shared/src/main/java/chess/ChessPiece.java,c\0\c02b93065e1c720b0a958f6a9aa91f709ca1cca9
+9
+	chess.iml,c\8\c88ec27e975addb53dbe52ec5b8747a1d95ec62b
+k
+;shared/src/test/java/passoff/chess/piece/KingMoveTests.java,b\a\ba735f5288818d5bcb2d915ba581f2540fda32d0
+l
+<shared/src/test/java/passoff/chess/piece/QueenMoveTests.java,a\2\a2bd15f35595ddc78d142da6ccffd03c5a50bac2
+k
+;shared/src/test/java/passoff/chess/piece/RookMoveTests.java,7\f\7fcc205671386de1ff9a72d54f687d72d4f2fde0
+k
+;shared/src/test/java/passoff/chess/piece/PawnMoveTests.java,f\5\f5f303eb20d0409e171fe16f357212147605d4a8

@@ -1,7 +1,31 @@
 
-o
-java:S3776B"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(°å†8³•Œ– 2
+L
+java:S1066¹"/Merge this if statement with the enclosing one.(ûÙÈ8¤©Åš 2
+L
+java:S1066İ"/Merge this if statement with the enclosing one.(ûÙÈ8¤©Åš 2
+R
+java:S1066Ş"/Merge this if statement with the enclosing one.(ö×Èıÿÿÿÿ8¤©Åš 2
+L
+java:S1066•"/Merge this if statement with the enclosing one.(ûÙÈ8¹â®› 2
+L
+java:S1066¹"/Merge this if statement with the enclosing one.(ûÙÈ8ºâ®› 2
+R
+java:S1066º"/Merge this if statement with the enclosing one.(ö×Èıÿÿÿÿ8ºâ®› 2
+p
+java:S3776B"SRefactor this method to reduce its Cognitive Complexity from 318 to the 15 allowed.(°å†8ı©Åš 2
 \
-java:S1854I":Remove this useless assignment to local variable "newPos".(æÉ­óøÿÿÿÿ8Àí– 2
-I
-java:S1172B",Remove this unused method parameter "board".(°å†8ªÆƒ– 2
+java:S1854I":Remove this useless assignment to local variable "newPos".(æÉ­óøÿÿÿÿ8ı©Åš 2
+\
+java:S1854k":Remove this useless assignment to local variable "newPos".(æÉ­óøÿÿÿÿ8ı©Åš 2
+[
+java:S1854¡"8Remove this useless assignment to local variable "move".(ÆÈßÅúÿÿÿÿ8ğòĞš 2
+[
+java:S1854º"8Remove this useless assignment to local variable "move".(ÆÈßÅúÿÿÿÿ8éÒÙš 2
+[
+java:S1854ı"8Remove this useless assignment to local variable "move".(ÆÈßÅúÿÿÿÿ8µã®› 2
+[
+java:S1854–"8Remove this useless assignment to local variable "move".(ÆÈßÅúÿÿÿÿ8µã®› 2
+]
+java:S1854Ñ":Remove this useless assignment to local variable "newPos".(æÉ­óøÿÿÿÿ8ı©Åš 2
+ä
+java:S6541B"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 299 to 64, Complexity from 90 to 14, Nesting Level from 9 to 2, Number of Variables from 59 to 6.(°å†8„ªÅš 2
