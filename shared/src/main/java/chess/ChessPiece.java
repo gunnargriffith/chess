@@ -1,5 +1,6 @@
 package chess;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -63,7 +64,41 @@ public class ChessPiece {
      * @return Collection of valid moves
      */
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        throw new RuntimeException("Not implemented");
+        Collection<ChessMove> possibleMoves = new ArrayList<>();
+        int initalRow =myPosition.getRow();
+        int initalCol =myPosition.getColumn();
+        
+        if(type == PieceType.KING){
+            for(int i = 0; i < 8; i++){
+                ChessPosition newPos = new ChessPosition();
+                if(i == 0){
+                    newPos = new ChessPosition(initalRow + 1, initalCol -1);
+                } else if (i == 1) {
+                    newPos = new ChessPosition(initalRow + 1, initalCol);
+                }else if (i == 2) {
+                    newPos = new ChessPosition(initalRow + 1, initalCol + 1);
+                }else if (i == 3) {
+                    newPos = new ChessPosition(initalRow, initalCol - 1);
+                }else if (i == 4) {
+                    newPos = new ChessPosition(initalRow, initalCol + 1);
+                }else if (i == 5) {
+                    newPos = new ChessPosition(initalRow - 1, initalCol + 1);
+                }else if (i == 6) {
+                    newPos = new ChessPosition(initalRow - 1, initalCol);
+                }else{
+                    newPos = new ChessPosition(initalRow - 1, initalCol - 1);
+                }
+
+                if(newPos.inBonds()){
+
+                    ChessMove move = new ChessMove(myPosition, newPos);
+                    possibleMoves.add(move);
+                }
+            }
+        }
+
+
+        return possibleMoves;
     }
 
     @Override
