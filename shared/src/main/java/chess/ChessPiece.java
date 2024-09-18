@@ -146,7 +146,7 @@ public class ChessPiece {
                 l2 = 8;
             } else if (type == PieceType.ROOK) {
                 l1 = 0;
-                l2 = 3;
+                l2 = 4;
             } else if (type == PieceType.BISHOP) {
                 l1 = 4;
                 l2 = 8;
