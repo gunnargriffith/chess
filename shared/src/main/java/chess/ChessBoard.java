@@ -118,7 +118,7 @@ public class ChessBoard {
             ChessPosition bPos = new ChessPosition(7, i);
             addPiece(bPos, bPawn);
         }
-        System.out.println("HIT");
+        //System.out.println("HIT");
     }
 
 
