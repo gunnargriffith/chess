@@ -90,9 +90,16 @@ public class ChessPiece {
                 }
 
                 if(newPos.inBonds()){
-
-                    ChessMove move = new ChessMove(myPosition, newPos);
-                    possibleMoves.add(move);
+                    ChessPiece hitPiece = board.getPiece(newPos);
+                    if(hitPiece != null){
+                        if(hitPiece.getTeamColor() != pieceColor) {
+                            ChessMove move=new ChessMove(myPosition, newPos);
+                            possibleMoves.add(move);
+                        }
+                    }else{
+                        ChessMove move=new ChessMove(myPosition, newPos);
+                        possibleMoves.add(move);
+                    }
                 }
             }
         }
