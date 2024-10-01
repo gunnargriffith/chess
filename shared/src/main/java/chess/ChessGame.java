@@ -114,7 +114,42 @@ public class ChessGame {
      * @return True if the specified team is in checkmate
      */
     public boolean isInCheckmate(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        //Assume I've already confirmed I'm in check
+        boolean checkmate = false;
+        Collection<ChessMove> allMoves = new ArrayList<>();
+        for(int i = 1; i< 9; i++){
+            for(int j = 1; j< 9; j++){
+                ChessPosition currentPos = new ChessPosition(i, j);
+                ChessPiece currentPiece = gameBoard.getPiece(currentPos);
+                if(currentPiece != null){
+                    if(currentPiece.getTeamColor() == teamColor){
+                        Collection<ChessMove> moves = currentPiece.pieceMoves(gameBoard, currentPos);
+                        allMoves.addAll(moves);
+                    }
+                }
+            }
+        }
+
+        ChessBoard betaBoard = new ChessBoard();
+        for(int i = 1; i< 9; i++){
+            for(int j = 1; j< 9; j++){
+                ChessPosition currentPos = new ChessPosition(i, j);
+                ChessPiece currentPiece = gameBoard.getPiece(currentPos);
+                if(currentPiece != null){
+                    //overlapping objects?
+                    betaBoard.addPiece(currentPos, currentPiece);
+                }else{
+                    betaBoard.deletePiece(currentPos);
+                }
+            }
+        }
+
+        
+
+
+
+
+        return checkmate;
     }
 
     /**
