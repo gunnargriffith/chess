@@ -59,6 +59,7 @@ public class ChessGame {
         possibleMoves = startPiece.pieceMoves(gameBoard, startPosition);
 
 
+
         return retMoves;
     }
 
@@ -69,7 +70,18 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
-        throw new RuntimeException("Not implemented");
+        ChessPosition startPos = move.getStartPosition();
+        ChessPosition endPos = move.getEndPosition();
+        ChessPiece movedPiece = gameBoard.getPiece(startPos);
+        Collection<ChessMove> vaildMoves = validMoves(startPos);
+        if(movedPiece.getTeamColor() != currentTurn){
+            throw new InvalidMoveException("This is not your piece");
+        } else if (!vaildMoves.contains(move)) {
+            throw new InvalidMoveException("Not a valid move");
+        }else{
+            //move is valid
+            
+        }
     }
 
     /**
@@ -144,7 +156,7 @@ public class ChessGame {
             }
         }
 
-        
+        //moves on the fake board?
 
 
 
