@@ -80,7 +80,36 @@ public class ChessGame {
             throw new InvalidMoveException("Not a valid move");
         }else{
             //move is valid
-            
+            if(move.getPromotionPiece() != null){
+                //promotion move
+                ChessPiece promoPiece = new ChessPiece(currentTurn, move.getPromotionPiece());
+                gameBoard.addPiece(startPos, null);
+                gameBoard.addPiece(endPos, promoPiece);
+            }else{
+                //normal Move
+                gameBoard.addPiece(startPos, null);
+                gameBoard.addPiece(endPos, movedPiece);
+            }
+
+            //change turn
+            if(currentTurn == TeamColor.WHITE){
+                setTeamTurn(TeamColor.BLACK);
+            }else{
+                setTeamTurn(TeamColor.WHITE);
+            }
+
+            //check checks
+            if(isInCheck(currentTurn)){
+                //checkMate Check
+                if(isInCheckmate(currentTurn)){
+                    gameOver(currentTurn);
+                }
+            }else{
+                isInStalemate(currentTurn);
+            }
+
+
+
         }
     }
 
@@ -151,7 +180,7 @@ public class ChessGame {
                     //overlapping objects?
                     betaBoard.addPiece(currentPos, currentPiece);
                 }else{
-                    betaBoard.deletePiece(currentPos);
+                    betaBoard.addPiece(currentPos, null);
                 }
             }
         }
@@ -191,6 +220,15 @@ public class ChessGame {
         }else{
             return false;
         }
+    }
+
+    public void gameOver(TeamColor losingColor){
+        if(losingColor == TeamColor.WHITE){
+            System.out.println("Black wins");
+        }else{
+            System.out.println("White wins");
+        }
+
     }
 
     /**
