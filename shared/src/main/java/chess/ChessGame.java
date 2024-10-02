@@ -221,6 +221,9 @@ public class ChessGame {
      * @return True if the specified team is in stalemate, otherwise false
      */
     public boolean isInStalemate(TeamColor teamColor) {
+        if(isInCheck(teamColor)){
+            return false;
+        }
         Collection<ChessMove> allMoves = new ArrayList<>();
         for(int i = 1; i< 9; i++){
             for(int j = 1; j< 9; j++){
@@ -228,7 +231,7 @@ public class ChessGame {
                 ChessPiece currentPiece = gameBoard.getPiece(currentPos);
                 if(currentPiece != null){
                     if(currentPiece.getTeamColor() == teamColor){
-                        Collection<ChessMove> moves = currentPiece.pieceMoves(gameBoard, currentPos);
+                        Collection<ChessMove> moves = validMoves(currentPos);
                         allMoves.addAll(moves);
                     }
                 }
