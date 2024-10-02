@@ -58,6 +58,35 @@ public class ChessGame {
         ChessPiece startPiece = gameBoard.getPiece(startPosition);
         possibleMoves = startPiece.pieceMoves(gameBoard, startPosition);
 
+        //fake game
+        ChessGame copyGame = new ChessGame();
+        ChessBoard copyBoard = gameBoard.boardCopy(gameBoard);
+        copyGame.setBoard(copyBoard);
+
+        for (ChessMove move: possibleMoves) {
+            ChessPosition startPos = move.getStartPosition();
+            ChessPosition endPos = move.getEndPosition();
+            //get hit piece
+            ChessPiece hitPiece = copyBoard.getPiece(endPos);
+
+            copyBoard.addPiece(startPos, null);
+            copyBoard.addPiece(endPos, startPiece);
+
+            //can't be in check
+            if(!copyGame.isInCheck(startPiece.getTeamColor())){
+                retMoves.add(move);
+            }
+
+            //Move back
+            copyBoard.addPiece(startPos, startPiece);
+            if(hitPiece != null){
+                copyBoard.addPiece(endPos, hitPiece);
+            }else{
+                copyBoard.addPiece(endPos, null);
+            }
+        }
+
+
 
 
         return retMoves;
