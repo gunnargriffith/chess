@@ -27,7 +27,10 @@ public class ChessBoard {
             int row=position.getRow() - 1;
             int col=position.getColumn() - 1;
             boardArray[row][col]=piece;
-            piece.setPiecePosition(position);
+
+            if(piece != null) {
+                piece.setPiecePosition(position);
+            }
         }
     }
 
@@ -46,16 +49,18 @@ public class ChessBoard {
 
     public ChessBoard boardCopy(ChessBoard ogBoard){
         ChessBoard betaBoard = new ChessBoard();
-        for(int i = 1; i< 9; i++){
-            for(int j = 1; j< 9; j++){
+        for(int i = 1; i < 9; i++){
+            for(int j = 1; j < 9; j++){
                 ChessPosition currentPos = new ChessPosition(i, j);
                 ChessPiece currentPiece = ogBoard.getPiece(currentPos);
-                if(currentPiece != null){
+                betaBoard.addPiece(currentPos, currentPiece);
+
+                /*if(currentPiece != null){
                     //overlapping objects?
                     betaBoard.addPiece(currentPos, currentPiece);
                 }else{
                     betaBoard.addPiece(currentPos, null);
-                }
+                }*/
             }
         }
 

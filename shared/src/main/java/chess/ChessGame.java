@@ -56,6 +56,9 @@ public class ChessGame {
         Collection<ChessMove> retMoves = new ArrayList<>();
         Collection<ChessMove> possibleMoves;
         ChessPiece startPiece = gameBoard.getPiece(startPosition);
+        if(startPiece == null){
+            return retMoves;
+        }
         possibleMoves = startPiece.pieceMoves(gameBoard, startPosition);
 
         //fake game
