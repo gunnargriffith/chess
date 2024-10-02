@@ -74,7 +74,7 @@ public class ChessGame {
         ChessPosition endPos = move.getEndPosition();
         ChessPiece movedPiece = gameBoard.getPiece(startPos);
         Collection<ChessMove> vaildMoves = validMoves(startPos);
-        if(movedPiece.getTeamColor() != currentTurn){
+        if(movedPiece == null || movedPiece.getTeamColor() != currentTurn){
             throw new InvalidMoveException("This is not your piece");
         } else if (!vaildMoves.contains(move)) {
             throw new InvalidMoveException("Not a valid move");
@@ -106,6 +106,7 @@ public class ChessGame {
                 }
             }else{
                 isInStalemate(currentTurn);
+                System.out.println("Stalemate!");
             }
 
 
@@ -142,7 +143,7 @@ public class ChessGame {
             ChessPosition endPos = move.getEndPosition();
             if(endPos == kingPos){
                 check = true;
-                break;
+                //break;
             }
         }
         return check;
@@ -156,7 +157,6 @@ public class ChessGame {
      */
     public boolean isInCheckmate(TeamColor teamColor) {
         //Assume I've already confirmed I'm in check
-        boolean checkmate = false;
         Collection<ChessMove> allMoves = new ArrayList<>();
         for(int i = 1; i< 9; i++){
             for(int j = 1; j< 9; j++){
@@ -164,33 +164,20 @@ public class ChessGame {
                 ChessPiece currentPiece = gameBoard.getPiece(currentPos);
                 if(currentPiece != null){
                     if(currentPiece.getTeamColor() == teamColor){
-                        Collection<ChessMove> moves = currentPiece.pieceMoves(gameBoard, currentPos);
+                        Collection<ChessMove> moves = validMoves(currentPos);
                         allMoves.addAll(moves);
                     }
                 }
             }
         }
-
-        ChessBoard betaBoard = new ChessBoard();
-        for(int i = 1; i< 9; i++){
-            for(int j = 1; j< 9; j++){
-                ChessPosition currentPos = new ChessPosition(i, j);
-                ChessPiece currentPiece = gameBoard.getPiece(currentPos);
-                if(currentPiece != null){
-                    //overlapping objects?
-                    betaBoard.addPiece(currentPos, currentPiece);
-                }else{
-                    betaBoard.addPiece(currentPos, null);
-                }
-            }
-        }
-
         //moves on the fake board?
 
+        if(allMoves.isEmpty()){
+            return true;
+        }else{
+            return false;
+        }
 
-
-
-        return checkmate;
     }
 
     /**
@@ -253,7 +240,7 @@ public class ChessGame {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ChessGame chessGame)) return false;
-        return Objects.deepEquals(gameBoard, chessGame.gameBoard) && currentTurn == chessGame.currentTurn;
+        return Objects.equals(gameBoard, chessGame.gameBoard) && currentTurn == chessGame.currentTurn;
     }
 
     @Override

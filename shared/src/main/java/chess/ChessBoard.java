@@ -44,6 +44,24 @@ public class ChessBoard {
         return boardArray[row][col];
     }
 
+    public ChessBoard boardCopy(ChessBoard ogBoard){
+        ChessBoard betaBoard = new ChessBoard();
+        for(int i = 1; i< 9; i++){
+            for(int j = 1; j< 9; j++){
+                ChessPosition currentPos = new ChessPosition(i, j);
+                ChessPiece currentPiece = ogBoard.getPiece(currentPos);
+                if(currentPiece != null){
+                    //overlapping objects?
+                    betaBoard.addPiece(currentPos, currentPiece);
+                }else{
+                    betaBoard.addPiece(currentPos, null);
+                }
+            }
+        }
+
+        return betaBoard;
+    }
+
 
     /**
      * Sets the board to the default starting board
