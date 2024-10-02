@@ -166,6 +166,7 @@ public class ChessGame {
                         allEnemyMoves.addAll(moves);
                     } else if (currentPiece.getPieceType() == ChessPiece.PieceType.KING) {
                         kingPos = currentPos;
+
                     }
                 }
             }
@@ -173,7 +174,7 @@ public class ChessGame {
 
         for (ChessMove move: allEnemyMoves) {
             ChessPosition endPos = move.getEndPosition();
-            if(endPos == kingPos){
+            if(endPos.getRow() == kingPos.getRow() && endPos.getColumn() == kingPos.getColumn()){
                 check = true;
                 //break;
             }
