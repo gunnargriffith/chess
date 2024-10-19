@@ -1,14 +1,15 @@
 
-b	java:S112I"FDefine and throw a dedicated exception instead of using a generic one.(Ö–†8ï‘£´¤2
-L
-java:S1066~"/Merge this if statement with the enclosing one.(–şà8ğ‘£´¤2
 M
-java:S1066ª"/Merge this if statement with the enclosing one.(–şà8ğ‘£´¤2
-c
-java:S1854;"ARemove this useless assignment to local variable "possibleMoves".(ÛÖ¡İüÿÿÿÿ8•’£´¤2
-O
-java:S14819"2Remove this unused "possibleMoves" local variable.(ÏšùÂ8•’£´¤2
-o
-java:S3776u"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ÅÍ†õ8—’£´¤2
+java:S1066Ç"/Merge this if statement with the enclosing one.(–şà8æÕÛ¤2
+M
+java:S1066é"/Merge this if statement with the enclosing one.(–şà8æÕÛ¤2
+t
+java:S3776h"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¥ïÊûÿÿÿÿ8ÁÕÛ¤2
+H	java:S106"+Replace this use of System.out by a logger.(ï¹ëó8ÃÕÛ¤2
+Y	java:S125³"<This block of commented-out lines of code should be removed.(±¯€¤8ÄÕÛ¤2
 d
-java:S1126²"AReplace this if-then-else statement by a single return statement.(Ñ™ªìüÿÿÿÿ8˜’£´¤2
+java:S1126Ğ"AReplace this if-then-else statement by a single return statement.(Ñ™ªìüÿÿÿÿ8ÅÕÛ¤2
+d
+java:S1126ñ"AReplace this if-then-else statement by a single return statement.(Ñ™ªìüÿÿÿÿ8ÆÕÛ¤2
+M	java:S106ú"+Replace this use of System.out by a logger.(öŠ¤æùÿÿÿÿ8ÆÕÛ¤2
+H	java:S106ü"+Replace this use of System.out by a logger.(ïÛ´Ù8ÆÕÛ¤2

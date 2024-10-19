@@ -27,3 +27,11 @@ k
 ;shared/src/test/java/passoff/chess/piece/RookMoveTests.java,7\f\7fcc205671386de1ff9a72d54f687d72d4f2fde0
 k
 ;shared/src/test/java/passoff/chess/piece/PawnMoveTests.java,f\5\f5f303eb20d0409e171fe16f357212147605d4a8
+l
+<shared/src/test/java/passoff/chess/game/ValidMovesTests.java,f\f\ffd727fc5e9fd2b43cbe3581e669a4c1ed406a80
+j
+:shared/src/test/java/passoff/chess/game/MakeMoveTests.java,9\1\9175234a3f303bad2cdae147fbe2e704f0f9016d
+l
+<shared/src/test/java/passoff/chess/game/GameStatusTests.java,3\d\3d8e6e324b6bb763d5d4a1a3f28e088c47790aa0
+i
+9shared/src/test/java/passoff/chess/game/FullGameTest.java,3\0\304a628b79462cebf64407482375f8e693e3f5cc
