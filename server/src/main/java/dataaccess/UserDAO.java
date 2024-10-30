@@ -1,5 +1,4 @@
 package dataaccess;
 
-public class UserDAO implements DataAccess{
-
+public interface UserDAO {
 }
