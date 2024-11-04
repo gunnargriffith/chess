@@ -5,6 +5,8 @@ import model.UserData;
 
 import javax.xml.crypto.Data;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public interface GameDAO {
 
@@ -14,5 +16,5 @@ public interface GameDAO {
 
   void deleteGame(GameData game) throws DataAccessException;
 
-  Collection<GameData> listGames()throws DataAccessException;
+  HashMap<Integer, GameData> listGames()throws DataAccessException;
 }
